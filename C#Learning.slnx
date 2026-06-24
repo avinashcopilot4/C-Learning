@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="C#Learning/C#Learning.csproj" />
+  <Project Path="Entity/Entity.csproj" Id="dfe12cc8-7fab-4b10-a007-942fac4aab19" />
+  <Project Path="Quiz/QuizApp.csproj" Id="51cf2f6c-199c-40a3-ad95-c72ee9bd750b" />
+</Solution>
