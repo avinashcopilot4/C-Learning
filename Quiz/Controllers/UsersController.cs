@@ -2,23 +2,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entity.Models;
 using Entity.Data;
+using BusinessCore.Interfaces;
+using Common.DTO.User;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
     private readonly SchoolDbContext _context;
-    public UsersController(SchoolDbContext context)
+    private readonly IUserService _userService;
+
+    public UsersController(SchoolDbContext context, IUserService userService)
     {
         _context = context;
+        _userService = userService;
     }
    
 
     // GET: api/User
     [HttpGet()]
-    public async Task<ActionResult<IEnumerable<User>>> GetUser()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUser()
     {
-        return await _context.Users.ToListAsync();
+        var users = await _userService.GetUser();
+        return Ok(users);
     }
 
     // GET: api/User
