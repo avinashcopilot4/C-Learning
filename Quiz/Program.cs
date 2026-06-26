@@ -1,5 +1,6 @@
 using BusinessCore;
 using BusinessCore.Interfaces;
+using Common.DTO.User;
 using Entity.Data;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -11,9 +12,13 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<SchoolDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("DefaultConnection"))
+                .EnableSensitiveDataLogging()   
+                .LogTo(Console.WriteLine, LogLevel.Information)); 
+
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddTransient<UserDto, UserDto>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

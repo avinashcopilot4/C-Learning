@@ -135,6 +135,7 @@ public partial class SchoolDbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Password).HasMaxLength(255);
+            entity.Property(e => e.Gender).HasMaxLength(10);
             entity.Property(e => e.Role)
                 .HasMaxLength(50)
                 .HasDefaultValue("Employee");

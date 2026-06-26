@@ -12,18 +12,24 @@ public class UsersController : ControllerBase
     private readonly SchoolDbContext _context;
     private readonly IUserService _userService;
 
-    public UsersController(SchoolDbContext context, IUserService userService)
+    public UsersController(SchoolDbContext context, IUserService userService,UserDto user)
     {
         _context = context;
         _userService = userService;
-    }
+        if(user.UserName == null)
+        {
+            user.UserName = "Avinash";
+        }
+}
    
 
     // GET: api/User
     [HttpGet()]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetUser()
     {
+       
         var users = await _userService.GetUser();
+
         return Ok(users);
     }
 

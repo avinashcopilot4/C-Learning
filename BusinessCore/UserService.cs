@@ -11,9 +11,11 @@ namespace BusinessCore;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-    public UserService(IUserRepository userRepository)
+    private readonly UserDto userDto;
+    public UserService(IUserRepository userRepository, UserDto user)
     {
         _userRepository = userRepository;
+        userDto = user;
     }
 
     public async Task<IEnumerable<UserDto>> GetUser()
